@@ -47,3 +47,7 @@ target_compile_features(pfc PRIVATE cxx_std_17)
 # "<CharacterSet>Unicode</CharacterSet>" = /DUNICODE and /D_UNICODE
 # "<TreatSpecificWarningsAsErrors>4715</TreatSpecificWarningsAsErrors>" = /we4715
 target_compile_options(pfc PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/W3 /DUNICODE /D_UNICODE /we4715>)
+
+# add include directory as INTERFACE so dependents can import this lib with
+# #import <pfc/...>
+target_include_directories(pfc INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/..)

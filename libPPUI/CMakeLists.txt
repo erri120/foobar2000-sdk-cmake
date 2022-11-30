@@ -35,7 +35,7 @@ target_sources(libPPUI PRIVATE
 # use C++ 17
 target_compile_features(libPPUI PRIVATE cxx_std_17)
 
-# copied from pfc.cvxproj
+# copied from libPPUI.cvxproj
 # "<WarningLevel>Level3</WarningLevel>" = /W3
 # "<CharacterSet>Unicode</CharacterSet>" = /DUNICODE and /D_UNICODE
 # "<TreatSpecificWarningsAsErrors>4715</TreatSpecificWarningsAsErrors>" = /we4715
@@ -44,9 +44,12 @@ target_compile_options(libPPUI PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/W3 /DUNICODE /
 # "<SubSystem>Windows</SubSystem>" = /SUBSYSTEM:Windows
 target_link_options(libPPUI PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/SUBSYSTEM:Windows>)
 
+# add include directory as INTERFACE so dependents can import this lib with
+# #import <libPPUI/...>
+target_include_directories(libPPUI INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+
 # add WTL headers
 target_link_libraries(libPPUI PUBLIC wtl)
 
 # add pfc
-target_link_libraries(libPPUI PRIVATE pfc)
-target_include_directories(libPPUI PRIVATE ..)
+target_link_libraries(libPPUI PUBLIC pfc)

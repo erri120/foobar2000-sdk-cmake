@@ -1,2 +1,3 @@
 add_subdirectory(SDK)
 add_subdirectory(helpers)
+add_subdirectory(foobar2000_component_client)

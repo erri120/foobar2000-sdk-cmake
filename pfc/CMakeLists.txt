@@ -47,6 +47,3 @@ target_compile_features(pfc PRIVATE cxx_std_17)
 # "<CharacterSet>Unicode</CharacterSet>" = /DUNICODE and /D_UNICODE
 # "<TreatSpecificWarningsAsErrors>4715</TreatSpecificWarningsAsErrors>" = /we4715
 target_compile_options(pfc PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/W3 /DUNICODE /D_UNICODE /we4715>)
-
-# add previously defined options
-target_link_libraries(pfc PUBLIC project_options)

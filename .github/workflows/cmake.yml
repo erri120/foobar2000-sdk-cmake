@@ -1,0 +1,24 @@
+name: CMake
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch:
+
+env:
+  CMAKE_PRESET: x64-msvc-release
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure CMake
+      run: cmake --preset ${{ env.CMAKE_PRESET }}
+
+    - name: Build
+      run: cmake --preset ${{ env.CMAKE_PRESET }} --build
